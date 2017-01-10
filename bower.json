@@ -1,0 +1,7 @@
+{
+  "name": "myproject",
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-animate": "^1.6.1"
+  }
+}
