@@ -20,7 +20,7 @@ public partial class _Default : System.Web.UI.Page
 
             foreach (DataRow item in dt.Rows)
             {
-                sb.AppendFormat("<p>{0}</p>", item["fldPostNr"]);
+                sb.AppendFormat("<p>id: {2} postnr: {0} <strong>{1}</strong></p>", item["fldPostNr"], item["fldByNavn"], item["fldID"]);
             };
             litResult.Text = sb.ToString();
             sb.Clear();
