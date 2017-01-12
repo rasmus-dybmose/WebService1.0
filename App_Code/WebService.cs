@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Services;
 
@@ -14,11 +15,14 @@ using System.Web.Services;
 [System.Web.Script.Services.ScriptService]
 public class WebService : System.Web.Services.WebService
 {
+        postFac objpost = new postFac();
+        DataTable dt = new DataTable();
+
+    //*********************************Get*********************************
+
     [WebMethod]
     public List<postFac> hentpostinfo(string key)
     {
-        postFac objpost = new postFac();
-        DataTable dt = new DataTable();
         dt = objpost.GetPostByNr(key);
 
         List<postFac> postnumre = new List<postFac>();
@@ -27,11 +31,27 @@ public class WebService : System.Web.Services.WebService
         {
             objpost = new postFac();
             objpost._id = Convert.ToInt32(item["fldID"]);
-            objpost._postnr = item["fldPostNr"].ToString();
+            objpost._postnr = Convert.ToInt32(item["fldPostNr"]);
             objpost._bynavn = item["fldByNavn"].ToString();
             postnumre.Add(objpost);
         };
         return postnumre;
+    }
+
+    //*********************************insert*********************************
+    [WebMethod]
+    public List<postFac> insert(int postnr, string bynavn)
+    {
+        List<postFac> postnumre = new List<postFac>();
+
+        objpost = new postFac();
+        objpost._postnr = postnr;
+        objpost._bynavn = bynavn;
+        objpost.insert();
+        postnumre.Add(objpost);
+
+        return postnumre;
+
     }
 
 
