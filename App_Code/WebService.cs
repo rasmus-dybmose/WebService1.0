@@ -18,6 +18,24 @@ public class WebService : System.Web.Services.WebService
         postFac objpost = new postFac();
         DataTable dt = new DataTable();
 
+    [WebMethod]
+    public List<postFac> hentpost()
+    {
+        dt = objpost.getpost();
+
+        List<postFac> postnumre = new List<postFac>();
+
+        foreach (DataRow item in dt.Rows)
+        {
+            objpost = new postFac();
+            objpost._id = Convert.ToInt32(item["fldID"]);
+            objpost._postnr = Convert.ToInt32(item["fldPostNr"]);
+            objpost._bynavn = item["fldByNavn"].ToString();
+            postnumre.Add(objpost);
+        };
+        return postnumre;
+    }
+
     //*********************************Get*********************************
 
     [WebMethod]

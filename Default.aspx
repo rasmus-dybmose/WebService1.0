@@ -13,6 +13,8 @@
             nr: {{product2._postnr}}
             navn: {{product2._bynavn}}
         </li>
+        <li ng-show="postnr2.length > 0 || bynavn.length > 0">nr: {{postnr2}} navn: {{bynavn}}
+        </li>
     </ul>
     <h2>skriv et post nummer og navnet på byen, så bliver det insertet ind i databasen</h2>
     <asp:TextBox ID="postnr" runat="server" placeholder="Post nummer" ng-model="postnr2" />
